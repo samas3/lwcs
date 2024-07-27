@@ -17,7 +17,7 @@ def get_info(idx, link):
     req.encoding = 'utf-8'
     b = bs(req.text, 'html.parser')
     h1s = str(b.h1)[4:-5]
-    if '404 Not Found' in h1s:
+    if '404' in h1s:
         return
     else:
         spans = b.select('body > div.container > div.row > div.col-xs-12.col-sm-12.col-md-9.col-lg-9 > div.m-book_info > div.m-infos > span:nth-child(2)')
