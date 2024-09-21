@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as bs
-import fake_useragent
 index = 42
 with open('./list.txt', 'r', encoding='utf-8') as f:
     s = f.read().split('\n')
@@ -10,8 +9,6 @@ with open('./list.txt', 'r', encoding='utf-8') as f:
         index = int(s[-2].split(' ')[0][:-1])
         print(f'Read index {index}')
 def get_info(idx, link):
-    ua = fake_useragent.UserAgent()
-    #headers = {'User-Agent': ua.random}
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0'}
     req = requests.get(link, headers=headers)
     req.encoding = 'utf-8'
@@ -35,8 +32,7 @@ def main():
             f.write(res)
 def get_tjss():
     url = 'https://lw.131453.xyz/tangjiasanshao/'
-    ua = fake_useragent.UserAgent()
-    headers = {'User-Agent': ua.random}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0'}
     req = requests.get(url, headers=headers)
     req.encoding = 'utf-8'
     soup = bs(req.text, 'html.parser')
